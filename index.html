@@ -13,27 +13,22 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue:       #1d6aeb;
-      --blue-dark:  #1251c4;
-      --blue-light: #e8f0fe;
-      --blue-mid:   #c7d9fc;
+      --navy:       #0d2240;
+      --navy-mid:   #1a3a6b;
+      --navy-light: #2255a4;
       --white:      #ffffff;
-      --gray-50:    #f7f9fc;
-      --gray-100:   #eef1f6;
-      --gray-300:   #d0d7e3;
-      --gray-400:   #9aa5bc;
-      --gray-600:   #5a6478;
-      --gray-900:   #111827;
-      --radius-sm:  10px;
-      --radius-md:  16px;
+      --off-white:  #f4f7fc;
+      --gray-300:   #c8d4e8;
+      --gray-400:   #8a9ab8;
+      --gray-600:   #4a5568;
+      --radius-md:  14px;
       --radius-lg:  24px;
-      --radius-xl:  32px;
       --radius-full: 9999px;
     }
 
     html, body {
       min-height: 100vh;
-      background: #dde8fb;
+      background: #dbe4f5;
       font-family: 'Inter', sans-serif;
       display: flex;
       align-items: center;
@@ -43,106 +38,76 @@
 
     .page-wrapper {
       width: 100%;
-      max-width: 390px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      max-width: 380px;
       animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Share button */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 40px rgba(13,34,64,0.18), 0 2px 8px rgba(13,34,64,0.08);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .swoosh-tl, .swoosh-br {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .swoosh-tl { top: 0; left: 0; }
+    .swoosh-br { bottom: 0; right: 0; }
+
+    .card-content { position: relative; z-index: 1; }
+
     .share-row {
       display: flex;
       justify-content: flex-end;
+      padding: 14px 14px 0;
     }
 
     .share-btn {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 9px 18px;
-      background: var(--white);
-      border: 1.5px solid var(--gray-300);
+      gap: 6px;
+      padding: 7px 16px;
+      background: transparent;
+      border: 1.5px solid rgba(13,34,64,0.25);
       border-radius: var(--radius-full);
       font-family: 'Inter', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      color: var(--gray-600);
+      color: var(--navy);
       cursor: pointer;
-      transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
-      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
     }
 
     .share-btn:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      box-shadow: 0 2px 12px rgba(29,106,235,0.12);
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
     }
 
-    .share-btn i { font-size: 14px; }
-
-    /* Card */
-    .card {
-      background: var(--white);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(29,106,235,0.08);
-      box-shadow: 0 4px 28px rgba(17, 24, 39, 0.08), 0 1px 4px rgba(17, 24, 39, 0.04);
-      overflow: hidden;
-    }
-
-    /* Header */
-    .card-header {
-      background: var(--blue);
-      padding: 28px 24px 64px;
-      text-align: center;
-      position: relative;
-    }
-
-    .card-header::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 52px;
-      background: var(--white);
-      border-radius: 50% 50% 0 0 / 28px 28px 0 0;
-    }
-
-    .brand-label {
-      display: inline-flex;
+    .avatar-section {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.15);
-      border-radius: var(--radius-full);
-      padding: 5px 14px;
-      margin-bottom: 22px;
-    }
-
-    .brand-label i { font-size: 12px; color: rgba(255,255,255,0.9); }
-    .brand-label span { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.9); letter-spacing: 0.5px; }
-
-    /* Avatar */
-    .avatar-wrap {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
+      padding: 12px 24px 0;
     }
 
     .avatar-ring {
-      width: 110px;
-      height: 110px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
+      border: 4px solid var(--navy);
+      padding: 4px;
       background: var(--white);
-      padding: 3px;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.25), 0 8px 24px rgba(0,0,0,0.16);
-      position: relative;
-      z-index: 2;
+      box-shadow: 0 6px 24px rgba(13,34,64,0.22);
     }
 
     .avatar-ring img {
@@ -154,215 +119,188 @@
       display: block;
     }
 
-    .side-btn {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      border: 1.5px solid rgba(255,255,255,0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: var(--white);
-      font-size: 16px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: background 0.15s, transform 0.15s;
-      z-index: 3;
-    }
-
-    .side-btn.left  { left: 16px; }
-    .side-btn.right { right: 16px; }
-    .side-btn:hover { background: rgba(255,255,255,0.32); transform: scale(1.08); }
-    .side-btn:active { transform: scale(0.94); }
-
-    /* Identity */
-    .card-identity {
-      padding: 14px 24px 0;
+    .identity {
       text-align: center;
+      padding: 16px 20px 4px;
     }
 
-    .card-identity h1 {
-      font-size: 23px;
+    .identity h1 {
+      font-size: 28px;
       font-weight: 700;
-      color: var(--gray-900);
+      color: var(--navy);
       letter-spacing: -0.4px;
+      line-height: 1.15;
     }
 
-    .card-identity .title {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--blue);
-      margin-top: 3px;
-      letter-spacing: 0.2px;
-    }
-
-    /* Divider */
-    .divider {
-      margin: 16px 20px 0;
-      height: 1px;
-      background: var(--gray-100);
-    }
-
-    /* LinkedIn pill */
-    .linkedin-row {
-      padding: 14px 20px 4px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .linkedin-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 20px;
-      background: var(--blue-light);
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      color: var(--blue);
-      font-size: 13px;
+    .identity .degree {
+      font-size: 12.5px;
       font-weight: 600;
-      border: 1px solid var(--blue-mid);
-      transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+      color: var(--navy-mid);
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      margin-top: 9px;
     }
 
-    .linkedin-pill:hover {
-      background: var(--blue);
-      color: var(--white);
-      border-color: var(--blue);
-      box-shadow: 0 4px 14px rgba(29,106,235,0.28);
+    .identity .university {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--gray-600);
+      letter-spacing: 0.5px;
+      margin-top: 3px;
     }
 
-    .linkedin-pill i { font-size: 14px; }
+    .divider {
+      height: 1px;
+      background: var(--gray-300);
+      margin: 18px 20px 14px;
+      opacity: 0.6;
+    }
 
-    /* Contact list */
     .contact-list {
-      padding: 14px 14px 8px;
+      padding: 0 14px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 8px;
     }
 
-    .contact-item {
+    .contact-btn {
       display: flex;
       align-items: center;
-      gap: 13px;
-      padding: 11px 10px;
-      border-radius: var(--radius-sm);
+      gap: 14px;
+      padding: 11px 14px;
+      background: var(--off-white);
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-md);
       text-decoration: none;
-      color: var(--gray-900);
-      transition: background 0.15s, transform 0.15s;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+      box-shadow: 0 2px 6px rgba(13,34,64,0.07);
     }
 
-    .contact-item:not(.no-link):hover {
-      background: var(--gray-50);
-      transform: translateX(3px);
+    .contact-btn:hover {
+      background: #e4ecf8;
+      border-color: var(--navy-light);
+      box-shadow: 0 4px 14px rgba(13,34,64,0.13);
+      transform: translateY(-1px);
     }
 
-    .contact-item:not(.no-link):active {
-      background: var(--blue-light);
-      transform: translateX(1px);
+    .contact-btn:active {
+      transform: translateY(0);
+      background: #d5e4f5;
     }
 
-    .contact-item.no-link { cursor: default; }
-
-    .contact-icon {
+    .btn-icon {
       width: 40px;
       height: 40px;
-      border-radius: var(--radius-sm);
+      border-radius: 50%;
+      background: var(--navy);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      color: var(--white);
       font-size: 16px;
     }
 
-    .contact-icon.phone    { background: #e8f5e9; color: #2e7d32; }
-    .contact-icon.whatsapp { background: #e8f5e9; color: #1daa5c; }
-    .contact-icon.email    { background: #fce4ec; color: #c62828; }
-    .contact-icon.location { background: var(--blue-light); color: var(--blue); }
+    .btn-divider {
+      width: 1.5px;
+      height: 26px;
+      background: var(--gray-300);
+      flex-shrink: 0;
+    }
 
-    .contact-text { flex: 1; min-width: 0; }
-    .contact-text .label {
+    .btn-text { flex: 1; min-width: 0; }
+
+    .btn-text .label {
       font-size: 10px;
       font-weight: 600;
       color: var(--gray-400);
-      letter-spacing: 0.7px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
     }
-    .contact-text .value {
-      font-size: 14px;
+
+    .btn-text .value {
+      font-size: 13.5px;
       font-weight: 500;
-      color: var(--gray-900);
+      color: var(--navy);
       margin-top: 1px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .contact-arrow {
-      color: var(--gray-300);
-      font-size: 12px;
+    .btn-arrow {
+      color: var(--navy-light);
+      font-size: 13px;
       flex-shrink: 0;
-      opacity: 0;
-      transition: opacity 0.15s, transform 0.15s;
+      transition: transform 0.15s;
     }
-    .contact-item:hover .contact-arrow { opacity: 1; transform: translateX(2px); }
 
-    /* Resume button */
+    .contact-btn:hover .btn-arrow { transform: translateX(3px); }
+
+    .contact-btn.no-action { cursor: default; }
+    .contact-btn.no-action:hover {
+      transform: none;
+      background: var(--off-white);
+      border-color: var(--gray-300);
+      box-shadow: 0 2px 6px rgba(13,34,64,0.07);
+    }
+
+    .resume-wrap { padding: 16px 14px 8px; }
+
     .resume-btn {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
-      margin: 10px 14px 14px;
       padding: 15px;
       border-radius: var(--radius-md);
-      background: var(--blue);
+      background: var(--navy);
       color: var(--white);
       text-decoration: none;
       font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.1px;
-      transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+      letter-spacing: 0.2px;
+      box-shadow: 0 4px 16px rgba(13,34,64,0.3);
+      transition: background 0.15s, box-shadow 0.15s, transform 0.12s;
     }
 
     .resume-btn:hover {
-      background: var(--blue-dark);
-      box-shadow: 0 6px 20px rgba(29,106,235,0.32);
+      background: var(--navy-mid);
+      box-shadow: 0 8px 24px rgba(13,34,64,0.35);
       transform: translateY(-1px);
     }
 
-    .resume-btn:active { transform: translateY(0); box-shadow: none; }
+    .resume-btn:active { transform: translateY(0); }
 
-    /* Footer */
-    .card-footer {
-      padding: 10px 20px 16px;
-      text-align: center;
-      border-top: 1px solid var(--gray-100);
+    .skyline-section {
+      position: relative;
+      height: 96px;
+      overflow: hidden;
+      margin-top: 6px;
     }
 
-    .card-footer p {
-      font-size: 12px;
-      color: var(--gray-400);
-      font-weight: 400;
+    .skyline-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+      opacity: 0.17;
+      display: block;
     }
 
-    /* Toast */
     .toast {
       position: fixed;
       bottom: 28px;
       left: 50%;
       transform: translateX(-50%) translateY(70px);
-      background: var(--gray-900);
+      background: var(--navy);
       color: var(--white);
       padding: 11px 20px;
       border-radius: var(--radius-full);
       font-size: 13px;
       font-weight: 500;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
       transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
       opacity: 0;
       z-index: 9999;
@@ -374,10 +312,9 @@
 
     .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-    @media (max-width: 380px) {
-      .card-identity h1 { font-size: 20px; }
-      .side-btn.left  { left: 8px; }
-      .side-btn.right { right: 8px; }
+    @media (max-width: 360px) {
+      .identity h1 { font-size: 24px; }
+      .avatar-ring { width: 110px; height: 110px; }
     }
   </style>
 </head>
@@ -389,140 +326,114 @@
 </div>
 
 <div class="page-wrapper">
-
-  <!-- Share button -->
-  <div class="share-row">
-    <button class="share-btn" id="share-btn" onclick="shareCard()" aria-label="Share digital card">
-      <i class="fa-solid fa-share-nodes"></i>
-      Share
-    </button>
-  </div>
-
   <div class="card" role="main">
 
-    <!-- Header -->
-    <div class="card-header">
-      <div class="brand-label">
-        <i class="fa-solid fa-id-card"></i>
-        <span>Digital Card</span>
+    <!-- Top-left navy swoosh -->
+    <svg class="swoosh-tl" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 C70 0 150 0 150 0 C150 0 105 12 82 40 C59 68 55 110 18 132 C0 143 0 150 0 150 Z" fill="#0d2240"/>
+      <path d="M0 0 C45 0 100 0 100 0 C100 0 70 10 52 32 C34 54 30 88 8 108 C0 116 0 130 0 130 Z" fill="#1a3a6b" opacity="0.55"/>
+    </svg>
+
+    <!-- Bottom-right navy swoosh -->
+    <svg class="swoosh-br" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M150 150 C80 150 0 150 0 150 C0 150 45 138 68 110 C91 82 95 40 132 18 C150 7 150 0 150 0 Z" fill="#0d2240"/>
+      <path d="M150 150 C105 150 50 150 50 150 C50 150 80 140 98 118 C116 96 120 62 142 42 C150 34 150 20 150 20 Z" fill="#1a3a6b" opacity="0.55"/>
+    </svg>
+
+    <div class="card-content">
+
+      <!-- Share -->
+      <div class="share-row">
+        <button class="share-btn" id="share-btn" onclick="shareCard()" aria-label="Share digital card">
+          <i class="fa-solid fa-share-nodes"></i>
+          Share
+        </button>
       </div>
 
-      <div class="avatar-wrap">
-        <a class="side-btn left"
-           href="tel:+971557576133"
-           id="phone-side-btn"
-           aria-label="Call Siddharth Verma">
-          <i class="fa-solid fa-phone"></i>
-        </a>
-
+      <!-- Avatar -->
+      <div class="avatar-section">
         <div class="avatar-ring">
           <img src="avatar.png" alt="Siddharth Verma" />
         </div>
+      </div>
 
-        <a class="side-btn right"
-           href="https://mail.google.com/mail/?view=cm&fs=1&to=siddharthv327@gmail.com"
-           target="_blank"
-           rel="noopener noreferrer"
-           id="email-side-btn"
-           aria-label="Email Siddharth Verma">
-          <i class="fa-solid fa-envelope"></i>
+      <!-- Identity -->
+      <div class="identity">
+        <h1>Siddharth Verma</h1>
+        <p class="degree">MBA in AI &amp; Business Analytics</p>
+        <p class="university">Middlesex University Dubai</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Contact buttons -->
+      <div class="contact-list" role="list">
+
+        <a class="contact-btn" href="mailto:siddharthv327@gmail.com" id="email-btn" role="listitem" aria-label="Email Siddharth">
+          <div class="btn-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="btn-divider"></div>
+          <div class="btn-text">
+            <div class="label">Email</div>
+            <div class="value">siddharthv327@gmail.com</div>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <a class="contact-btn" href="tel:+971557576133" id="phone-btn" role="listitem" aria-label="Call Siddharth">
+          <div class="btn-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="btn-divider"></div>
+          <div class="btn-text">
+            <div class="label">Phone</div>
+            <div class="value">+971 55 757 6133</div>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <a class="contact-btn" href="https://wa.me/971557576133" target="_blank" rel="noopener noreferrer" id="whatsapp-btn" role="listitem" aria-label="WhatsApp Siddharth">
+          <div class="btn-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="btn-divider"></div>
+          <div class="btn-text">
+            <div class="label">WhatsApp</div>
+            <div class="value">+971 55 757 6133</div>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <div class="contact-btn no-action" role="listitem" aria-label="Location: Dubai, UAE">
+          <div class="btn-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="btn-divider"></div>
+          <div class="btn-text">
+            <div class="label">Location</div>
+            <div class="value">Dubai, United Arab Emirates</div>
+          </div>
+        </div>
+
+        <a class="contact-btn" href="https://www.linkedin.com/in/siddharth-verma-1805sv" target="_blank" rel="noopener noreferrer" id="linkedin-btn" role="listitem" aria-label="LinkedIn profile">
+          <div class="btn-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div class="btn-divider"></div>
+          <div class="btn-text">
+            <div class="label">LinkedIn</div>
+            <div class="value">siddharth-verma-1805sv</div>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+      </div>
+
+      <!-- Resume -->
+      <div class="resume-wrap">
+        <a class="resume-btn" href="https://drive.google.com/file/d/1oVyN407GsxbirAGuAL4IzzozWd01-9-s/view?usp=drive_link" target="_blank" rel="noopener noreferrer" id="resume-btn" aria-label="View Resume">
+          <i class="fa-solid fa-file-lines"></i>
+          View Resume
         </a>
       </div>
-    </div>
 
-    <!-- Identity -->
-    <div class="card-identity">
-      <h1>Siddharth Verma</h1>
-      <p class="title">Professional</p>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- LinkedIn -->
-    <div class="linkedin-row">
-      <a class="linkedin-pill"
-         href="https://www.linkedin.com/in/siddharth-verma-1805sv"
-         target="_blank"
-         rel="noopener noreferrer"
-         id="linkedin-link"
-         aria-label="LinkedIn profile">
-        <i class="fa-brands fa-linkedin-in"></i>
-        Connect on LinkedIn
-      </a>
-    </div>
-
-    <!-- Contact list -->
-    <div class="contact-list" role="list">
-
-      <a class="contact-item"
-         href="tel:+971557576133"
-         id="phone-contact"
-         role="listitem"
-         aria-label="Call +971 55 757 6133">
-        <div class="contact-icon phone"><i class="fa-solid fa-phone"></i></div>
-        <div class="contact-text">
-          <div class="label">Phone</div>
-          <div class="value">+971 55 757 6133</div>
-        </div>
-        <i class="fa-solid fa-chevron-right contact-arrow"></i>
-      </a>
-
-      <a class="contact-item"
-         href="https://wa.me/971557576133"
-         target="_blank"
-         rel="noopener noreferrer"
-         id="whatsapp-contact"
-         role="listitem"
-         aria-label="Open WhatsApp chat">
-        <div class="contact-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
-        <div class="contact-text">
-          <div class="label">WhatsApp</div>
-          <div class="value">+971 55 757 6133</div>
-        </div>
-        <i class="fa-solid fa-chevron-right contact-arrow"></i>
-      </a>
-
-      <a class="contact-item"
-         href="https://mail.google.com/mail/?view=cm&fs=1&to=siddharthv327@gmail.com"
-         target="_blank"
-         rel="noopener noreferrer"
-         id="email-contact"
-         role="listitem"
-         aria-label="Send email to Siddharth">
-        <div class="contact-icon email"><i class="fa-solid fa-envelope"></i></div>
-        <div class="contact-text">
-          <div class="label">Email</div>
-          <div class="value">siddharthv327@gmail.com</div>
-        </div>
-        <i class="fa-solid fa-chevron-right contact-arrow"></i>
-      </a>
-
-      <div class="contact-item no-link" role="listitem" aria-label="Location: Dubai, UAE">
-        <div class="contact-icon location"><i class="fa-solid fa-location-dot"></i></div>
-        <div class="contact-text">
-          <div class="label">Location</div>
-          <div class="value">Dubai, UAE</div>
-        </div>
+      <!-- Dubai skyline -->
+      <div class="skyline-section">
+        <img class="skyline-img" src="skyline.png" alt="Dubai Skyline" />
       </div>
 
     </div>
-
-    <!-- Resume -->
-    <a class="resume-btn"
-       href="https://drive.google.com/file/d/1oVyN407GsxbirAGuAL4IzzozWd01-9-s/view?usp=drive_link"
-       target="_blank"
-       rel="noopener noreferrer"
-       id="resume-btn"
-       aria-label="View Resume on Google Drive">
-      <i class="fa-solid fa-file-lines"></i>
-      View Resume
-    </a>
-
-    <!-- Footer -->
-    <div class="card-footer">
-      <p>Siddharth Verma &middot; Dubai, UAE</p>
-    </div>
-
   </div>
 </div>
 
@@ -565,14 +476,14 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.contact-item').forEach((item, i) => {
+    document.querySelectorAll('.contact-btn').forEach((item, i) => {
       item.style.opacity = '0';
-      item.style.transform = 'translateX(-16px)';
+      item.style.transform = 'translateY(12px)';
       setTimeout(() => {
-        item.style.transition = 'opacity 0.35s ease, transform 0.35s ease, background 0.15s ease';
+        item.style.transition = 'opacity 0.3s ease, transform 0.3s ease, background 0.15s, border-color 0.15s, box-shadow 0.15s';
         item.style.opacity = '1';
-        item.style.transform = 'translateX(0)';
-      }, 280 + i * 80);
+        item.style.transform = 'translateY(0)';
+      }, 180 + i * 65);
     });
   });
 </script>
