@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Siddharth Verma – Digital Business Card. Connect instantly via phone, WhatsApp, email, LinkedIn or view his resume." />
+  <title>Siddharth Verma | Digital Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7c3aed;
+      --purple-light: #a78bfa;
+      --purple-dark: #5b21b6;
+      --teal: #06b6d4;
+      --teal-light: #67e8f9;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --shadow-sm: 0 2px 8px rgba(124,58,237,0.12);
+      --shadow-md: 0 8px 24px rgba(124,58,237,0.18);
+      --shadow-lg: 0 16px 48px rgba(124,58,237,0.25);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-full: 9999px;
+    }
+
+    html, body {
+      height: 100%;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .top-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 28px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+      box-shadow: 0 4px 16px rgba(124,58,237,0.4);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    .top-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.55); }
+    .top-btn:hover::before { opacity: 1; }
+    .top-btn:active { transform: translateY(0); }
+    .top-btn i { font-size: 18px; }
+
+    /* Card */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Header */
+    .card-header {
+      background: linear-gradient(150deg, #c4b5fd 0%, #a78bfa 35%, #7c3aed 70%, #5b21b6 100%);
+      padding: 28px 24px 72px;
+      text-align: center;
+      position: relative;
+    }
+
+    .card-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: var(--white);
+      border-radius: 50% 50% 0 0 / 32px 32px 0 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .brand-icon {
+      width: 32px; height: 32px;
+      background: var(--white);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .brand-icon svg { width: 20px; height: 20px; }
+    .brand-name { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); letter-spacing: -0.3px; }
+
+    /* Avatar area */
+    .avatar-area {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .avatar-ring {
+      width: 118px; height: 118px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #fff 0%, #e0d7ff 50%, #fff 100%);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.5), 0 8px 32px rgba(91,33,182,0.4);
+      animation: pulse-ring 3s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(255,255,255,0.5), 0 8px 32px rgba(91,33,182,0.4); }
+      50%       { box-shadow: 0 0 0 9px rgba(255,255,255,0.25), 0 8px 32px rgba(91,33,182,0.6); }
+    }
+
+    .avatar-ring img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .side-icon-btn {
+      position: absolute;
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 17px;
+      box-shadow: 0 4px 16px rgba(91,33,182,0.45);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      z-index: 3;
+    }
+
+    .side-icon-btn.left  { left: 20px; }
+    .side-icon-btn.right { right: 20px; }
+
+    .side-icon-btn:hover { transform: scale(1.12); box-shadow: 0 6px 22px rgba(91,33,182,0.6); }
+    .side-icon-btn:active { transform: scale(0.95); }
+
+    /* Identity */
+    .card-identity {
+      padding: 18px 24px 0;
+      text-align: center;
+    }
+
+    .card-identity h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--gray-800);
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+
+    .card-identity .title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--purple);
+      margin-top: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin: 14px 0 0;
+    }
+
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--purple-light); }
+    .dot:nth-child(2) { background: var(--purple); width: 9px; height: 9px; }
+
+    /* Social strip */
+    .social-strip {
+      background: linear-gradient(90deg, var(--purple-dark) 0%, var(--purple) 50%, #6d28d9 100%);
+      margin: 20px 0 0;
+      padding: 14px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-link {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      font-size: 20px;
+      padding: 4px 0;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+
+    .social-link:hover { color: var(--white); transform: scale(1.22); }
+    .social-link:active { transform: scale(0.9); }
+
+    /* Contact list */
+    .contact-list {
+      padding: 20px 20px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--gray-800);
+      transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+      border: 1.5px solid transparent;
+    }
+
+    .contact-item:not(.no-link):hover {
+      background: #f5f3ff;
+      border-color: #ddd6fe;
+      transform: translateX(4px);
+    }
+
+    .contact-item:not(.no-link):active { transform: translateX(2px); background: #ede9fe; }
+
+    .contact-item.no-link { cursor: default; color: var(--gray-600); }
+
+    .contact-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .contact-icon.phone    { background: #f0fdf4; color: #16a34a; }
+    .contact-icon.whatsapp { background: #f0fdf4; color: #25d366; }
+    .contact-icon.email    { background: #fef2f2; color: #dc2626; }
+    .contact-icon.location { background: #eff6ff; color: #2563eb; }
+
+    .contact-text { flex: 1; }
+    .contact-text .label { font-size: 11px; font-weight: 600; color: var(--gray-400); letter-spacing: 0.6px; text-transform: uppercase; }
+    .contact-text .value  { font-size: 14px; font-weight: 500; color: var(--gray-800); margin-top: 2px; line-height: 1.3; }
+
+    .contact-arrow {
+      color: var(--purple-light); font-size: 13px;
+      opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .contact-item:hover .contact-arrow { opacity: 1; transform: translateX(3px); }
+
+    /* Resume button */
+    .resume-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px;
+      margin: 16px 20px 8px;
+      padding: 16px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 20px rgba(124,58,237,0.45);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      position: relative; overflow: hidden;
+    }
+
+    .resume-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.18s ease;
+    }
+
+    .resume-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124,58,237,0.55); }
+    .resume-btn:hover::before { opacity: 1; }
+    .resume-btn:active { transform: translateY(0); }
+
+    /* Footer */
+    .card-footer {
+      padding: 14px 22px 22px;
+      text-align: center;
+      border-top: 1px solid var(--gray-100);
+      margin-top: 8px;
+    }
+
+    .card-footer p { font-size: 12px; color: var(--gray-400); font-weight: 500; }
+
+    .footer-brand {
+      display: inline-flex; align-items: center; gap: 5px; margin-top: 4px;
+    }
+
+    .footer-brand span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px; font-weight: 700;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+      color: var(--white);
+      padding: 12px 22px;
+      border-radius: var(--radius-full);
+      font-size: 14px; font-weight: 600;
+      box-shadow: 0 8px 24px rgba(91,33,182,0.5);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s ease;
+      opacity: 0; z-index: 9999;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    @media (max-width: 380px) {
+      .card-identity h1 { font-size: 22px; }
+      .side-icon-btn.left  { left: 8px; }
+      .side-icon-btn.right { right: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toast-msg">Link copied!</span>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- Top bar: Share only -->
+  <div class="top-bar">
+    <button class="top-btn" id="share-btn" onclick="shareCard()" aria-label="Share digital card">
+      <i class="fa-solid fa-share-nodes"></i>
+      Share
+    </button>
+  </div>
+
+  <div class="card" role="main">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="6" width="14" height="10" rx="2" fill="#7c3aed"/>
+            <rect x="8" y="10" width="14" height="10" rx="2" fill="#a78bfa" opacity="0.7"/>
+          </svg>
+        </div>
+        <span class="brand-name">DigitalCard</span>
+      </div>
+
+      <div class="avatar-area">
+        <!-- Phone side button -->
+        <a class="side-icon-btn left"
+           href="tel:+971557576133"
+           id="phone-side-btn"
+           aria-label="Call Siddharth Verma">
+          <i class="fa-solid fa-phone"></i>
+        </a>
+
+        <!-- Avatar -->
+        <div class="avatar-ring">
+          <img src="avatar.png" alt="Siddharth Verma" />
+        </div>
+
+        <!-- Email side button -->
+        <a class="side-icon-btn right"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=siddharthv327@gmail.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           id="email-side-btn"
+           aria-label="Email Siddharth Verma">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Identity -->
+    <div class="card-identity">
+      <h1>Siddharth Verma</h1>
+      <p class="title">Professional</p>
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- Social strip: LinkedIn only -->
+    <div class="social-strip" role="navigation" aria-label="Social links">
+      <a class="social-link"
+         href="https://www.linkedin.com/in/siddharth-verma-1805sv"
+         target="_blank"
+         rel="noopener noreferrer"
+         id="linkedin-social"
+         aria-label="LinkedIn profile">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+    </div>
+
+    <!-- Contact list -->
+    <div class="contact-list" role="list">
+
+      <a class="contact-item"
+         href="tel:+971557576133"
+         id="phone-contact"
+         role="listitem"
+         aria-label="Call +971 55 757 6133">
+        <div class="contact-icon phone"><i class="fa-solid fa-phone"></i></div>
+        <div class="contact-text">
+          <div class="label">Phone</div>
+          <div class="value">+971 55 757 6133</div>
+        </div>
+        <i class="fa-solid fa-chevron-right contact-arrow"></i>
+      </a>
+
+      <a class="contact-item"
+         href="https://wa.me/971557576133"
+         target="_blank"
+         rel="noopener noreferrer"
+         id="whatsapp-contact"
+         role="listitem"
+         aria-label="Open WhatsApp chat">
+        <div class="contact-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="contact-text">
+          <div class="label">WhatsApp</div>
+          <div class="value">+971 55 757 6133</div>
+        </div>
+        <i class="fa-solid fa-chevron-right contact-arrow"></i>
+      </a>
+
+      <a class="contact-item"
+         href="https://mail.google.com/mail/?view=cm&fs=1&to=siddharthv327@gmail.com"
+         target="_blank"
+         rel="noopener noreferrer"
+         id="email-contact"
+         role="listitem"
+         aria-label="Send email to Siddharth">
+        <div class="contact-icon email"><i class="fa-solid fa-envelope"></i></div>
+        <div class="contact-text">
+          <div class="label">Email</div>
+          <div class="value">siddharthv327@gmail.com</div>
+        </div>
+        <i class="fa-solid fa-chevron-right contact-arrow"></i>
+      </a>
+
+      <div class="contact-item no-link" role="listitem" aria-label="Location: Dubai, UAE">
+        <div class="contact-icon location"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="contact-text">
+          <div class="label">Location</div>
+          <div class="value">Dubai, UAE</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Resume -->
+    <a class="resume-btn"
+       href="https://drive.google.com/file/d/1oVyN407GsxbirAGuAL4IzzozWd01-9-s/view?usp=drive_link"
+       target="_blank"
+       rel="noopener noreferrer"
+       id="resume-btn"
+       aria-label="View Resume on Google Drive">
+      <i class="fa-solid fa-file-lines"></i>
+      View Resume
+    </a>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <p>Connect with me</p>
+      <div class="footer-brand">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="6" width="14" height="10" rx="2" fill="#7c3aed"/>
+          <rect x="8" y="10" width="14" height="10" rx="2" fill="#06b6d4" opacity="0.7"/>
+        </svg>
+        <span>DigitalCard</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  async function shareCard() {
+    const cardUrl = window.location.href;
+    const shareData = {
+      title: 'Siddharth Verma \u2013 Digital Business Card',
+      text: 'Connect with Siddharth Verma via his digital business card.',
+      url: cardUrl,
+    };
+    if (navigator.share) {
+      try { await navigator.share(shareData); }
+      catch (err) { if (err.name !== 'AbortError') fallbackCopy(cardUrl); }
+    } else {
+      fallbackCopy(cardUrl);
+    }
+  }
+
+  function fallbackCopy(text) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => showToast('\uD83D\uDCCB Link copied to clipboard!'));
+    } else {
+      const el = document.createElement('textarea');
+      el.value = text;
+      el.style.cssText = 'position:absolute;left:-9999px';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast('\uD83D\uDCCB Link copied to clipboard!');
+    }
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.contact-item').forEach((item, i) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateX(-20px)';
+      setTimeout(() => {
+        item.style.transition = 'opacity 0.4s ease, transform 0.4s ease, background 0.15s ease, border-color 0.15s ease';
+        item.style.opacity = '1';
+        item.style.transform = 'translateX(0)';
+      }, 350 + i * 90);
+    });
+  });
+</script>
+</body>
+</html>
